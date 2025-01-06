@@ -16,7 +16,7 @@ class AutoCommentMod(loader.Module):
         "enabled": "✅ Enabled",
         "status_now": "👌 AutoComment was <b>{}</b>!",
         "config_status": "Are we ready to comment?",
-        "config_channels": "Under which channels i should comment? (ids)",
+        "config_channels": "Under which channels I should comment? (ids)",
     }
 
     strings_ru = {
@@ -57,10 +57,6 @@ class AutoCommentMod(loader.Module):
 
         # Проверка, находится ли чат в заданных каналах
         if chat not in self.config["channels"]:
-            return
-
-        # Проверяем, начинается ли сообщение с 🎉
-        if not message.text.startswith("🎉"):
             return
 
         # Извлекаем название из сообщения, если оно в моноширинном шрифте
