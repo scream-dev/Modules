@@ -48,7 +48,7 @@ class PlanManager(loader.Module):
             await utils.answer(message, "⚠️ <b>Вы должны указать план.</b>")
             return
         
-        self.plans.append(args)
+        self.plans.append(args)  # Новые планы добавляются в оригинальный список
         await utils.answer(message, self.strings["plan_added"].format(args))
 
     @loader.command(command="plan")
