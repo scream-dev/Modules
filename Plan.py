@@ -1,6 +1,6 @@
 import datetime
 import logging
-import time
+import asyncio
 from telethon.tl.types import Message
 from .. import loader, utils
 
@@ -25,18 +25,17 @@ class PlanManager(loader.Module):
                 lambda: "Используйте 1, -1, -3 и т. д. для установки смещения времени.",
             ),
         )
-        self.plans = []  # Хранилище планов
-        self.start_cleanup()
+        self.plans = []
+        asyncio.create_task(self.start_cleanup())
 
-    def start_cleanup(self):
+    async def start_cleanup(self):
         """Запускает процесс очистки планов"""
-        time_interval = 60  # Проверка каждый 60 секунд
         while True:
             now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=int(self.config["timezone"]))))
-            if now.hour == 0 and now.minute == 0:  # В полночь
+            if now.hour == 0 and now.minute == 0:
                 self.plans.clear()  # Очистка планов
                 logger.info("Список планов очищен.")
-            time.sleep(time_interval)
+            await asyncio.sleep(60)  # Проверка каждый 60 секунд
 
     @loader.command(command="makeplan")
     async def makeplan(self, message: Message):
