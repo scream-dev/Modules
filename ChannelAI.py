@@ -7,7 +7,7 @@ from .. import loader, utils
 
 @loader.tds
 class GigaChatMod(loader.Module):
-    """Модуль для ведения канала Gigachat"""
+    """Module for using GigaChat Channel"""
 
     strings = {
         "name": "GigaChat Channel",
@@ -17,7 +17,12 @@ class GigaChatMod(loader.Module):
         "error_occurred": "An error occurred: {}",
         "daily_plan_created": "Weekly plan has been created.",
         "weekly_summary": "Weekly summary: {}\n",
-        "formatted_post": "{}\n=\n"
+        "formatted_post": "{}\n=\n",
+        "command_help": {
+            ".planning": "Создает план на неделю.",
+            ".show_sc": "Показывает хранилище данных.",
+            ".gen": "Генерирует посты за день с задержкой.",
+        },
     }
 
     strings_ru = {
@@ -27,7 +32,12 @@ class GigaChatMod(loader.Module):
         "error_occurred": "Произошла ошибка: {}",
         "daily_plan_created": "План на неделю создан.",
         "weekly_summary": "Итог за неделю: {}\n",
-        "formatted_post": "{}\n=\n"
+        "formatted_post": "{}\n=\n",
+        "command_help": {
+            ".planning": "Создаёт план на неделю.",
+            ".show_sc": "Показывает хранилище данных.",
+            ".gen": "Генерирует посты за день с задержкой.",
+        },
     }
 
     def __init__(self):
@@ -41,12 +51,15 @@ class GigaChatMod(loader.Module):
             "USER_SCRIPT",
             "Введите скрипт человека.",
             "DATA_STORAGE",
-            {}
+            {},
+            "CHANNEL_ID",
+            None,
+            "Введите ID канала, в котором будет вестись личный блог.",
         )
         self.loop = asyncio.get_event_loop()
         
     async def gencmd(self, message):
-        # Здесь генерируем посты для дня
+        """Генерирует посты для блога"""
         await self.generate_daily_posts(message, self.config["USER_SCRIPT"])
 
     async def generate_daily_posts(self, message, user_script):
@@ -84,19 +97,20 @@ class GigaChatMod(loader.Module):
         return posts
 
     async def planningcmd(self, message):
-        # создание плана на неделю
+        """Создает план на неделю"""
         await utils.answer(message, self.strings("daily_plan_created"))
 
     async def show_sc(self, message):
-        # показать данные
+        """Показывает хранилище данных"""
         data_storage = self.config["DATA_STORAGE"]
         await utils.answer(message, str(data_storage))
 
     async def gen_cmd(self, message):
-        # генерация постов за день
+        """Генерирует посты за день"""
         await self.gencmd(message)
 
     async def schedule_posts(self, day_posts):
+        """Проводит планирование постов по расписанию"""
         while True:
             now = datetime.now(tz=timedelta(hours=int(self.config["TIMEZONE"].split(':')[0])))
             if now.hour == 8 and now.minute == 0:
@@ -104,3 +118,9 @@ class GigaChatMod(loader.Module):
             if now.hour == 22 and now.minute == 0:
                 await self.gencmd()
             await asyncio.sleep(60)  # Проверять каждую минуту
+
+    @loader.command(ru_doc="Получить помощь по командам")
+    async def helpcmd(self, message):
+        """Показывает список доступных команд"""
+        help_text = "\n".join(f"{cmd}: {desc}" for cmd, desc in self.strings("command_help").items())
+        await utils.answer(message, help_text)
