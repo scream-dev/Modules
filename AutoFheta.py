@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 @loader.tds
 class AutoCommentMod(loader.Module):
-    """Автоматическая fheta"""
+    """Automatically comments under any channels you want"""
 
     strings = {
         "name": "AutoFheta",
@@ -17,7 +17,6 @@ class AutoCommentMod(loader.Module):
         "status_now": "👌 AutoComment was <b>{}</b>!",
         "config_status": "Are we ready to comment?",
         "config_channels": "Under which channels i should comment? (ids)",
-        "config_message": "What i will comment?",
     }
 
     strings_ru = {
@@ -26,7 +25,6 @@ class AutoCommentMod(loader.Module):
         "status_now": "👌 AutoComment теперь <b>{}</b>!",
         "config_status": "Комментим ли мы?",
         "config_channels": "Под каким каналами я должен комментировать (айди)",
-        "config_message": "Как я прокомментирую?",
     }
 
     def __init__(self):
@@ -36,12 +34,6 @@ class AutoCommentMod(loader.Module):
                 True,
                 lambda: self.strings("config_status"),
                 validator=loader.validators.Boolean(),
-            ),
-            loader.ConfigValue(
-                "message",
-                "I'm the first! 😎",
-                lambda: self.strings("config_message"),
-                validator=loader.validators.String(),
             ),
             loader.ConfigValue(
                 "channels",
@@ -57,10 +49,13 @@ class AutoCommentMod(loader.Module):
 
     @loader.watcher(only_messages=True, only_channels=True)
     async def watcher(self, message):
+        # Проверка включения функции автокомментариев
         if not self.config["status"]:
             return
+            
         chat = utils.get_chat_id(message)
 
+        # Проверка, находится ли чат в заданных каналах
         if chat not in self.config["channels"]:
             return
 
@@ -75,6 +70,7 @@ class AutoCommentMod(loader.Module):
             # Формируем сообщение для комментария
             auto_comment = f".fheta {title}"
 
+            # Отправляем комментарий
             await self.client.send_message(
                 entity=chat, message=auto_comment, comment_to=message
             )
