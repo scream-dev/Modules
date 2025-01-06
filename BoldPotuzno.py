@@ -5,8 +5,8 @@ from .. import loader, utils
 
 @loader.tds
 class BoldMod(loader.Module):
-    """Модуль для авто замены ПОТУЖНО шрифта на жирный только если сообщение содержит 'потужно'."""
-    strings = {"name": "Bold"}
+    """Модуль для авто замены ПОТУЖНО на жирный только если сообщение содержит 'потужно'."""
+    strings = {"name": "PotuznoBold"}
     
     async def client_ready(self, client, db):
         self.client = client
@@ -14,12 +14,12 @@ class BoldMod(loader.Module):
         self.db.set(self.strings["name"], "bold_enabled", False)
 
     async def on_boldcmd(self, message):
-        """Включить авто замену шрифта на жирный."""
+        """Включить авто замену ПОТУЖНО на жирный."""
         self.db.set(self.strings["name"], "bold_enabled", True)
         await utils.answer(message, "Авто замена включена!")
 
     async def off_boldcmd(self, message):
-        """Выключить авто замену шрифта на жирный."""
+        """Выключить авто замену ПОТУЖНО на жирный."""
         self.db.set(self.strings["name"], "bold_enabled", False)
         await utils.answer(message, "Авто замена выключена!")
 
