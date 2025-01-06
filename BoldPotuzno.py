@@ -1,11 +1,12 @@
 # meta developer: @ScreamDev
 # Попросил сделать: @Carunocat
+# Переписанный модуль @Foxy437
 
 from .. import loader, utils
 
 @loader.tds
 class BoldMod(loader.Module):
-    """Модуль для авто замены ПОТУЖНО на жирный только если сообщение содержит 'потужно'."""
+    """Модуль для авто замены ПОТУЖНО на жирный только если сообщение содержит 'потужно'. Переписанный модуль @Foxy437"""
     strings = {"name": "PotuznoBold"}
     
     async def client_ready(self, client, db):
