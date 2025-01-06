@@ -9,12 +9,12 @@ logger = logging.getLogger(__name__)
 class PlanManager(loader.Module):
     strings = {
         "name": "PlanManager",
-        "plans_empty": "Список планов пуст.",
-        "plans_list": "Список планов:\n{}",
-        "plan_added": "План добавлен: {}",
-        "plan_deleted": "План удалён: {}",
-        "plan_crossed": "План вычеркнут: {}",
-        "plan_does_not_exist": "План не найден: {}",
+        "plans_empty": "❌ <b>Список планов пуст.</b>",
+        "plans_list": "📝 <b>Список планов:</b>\n{}",
+        "plan_added": "✅ <b>План добавлен:</b> {}",
+        "plan_deleted": "🗑️ <b>План удалён:</b> {}",
+        "plan_crossed": "✍️ <b>План вычеркнут:</b> {}",
+        "invalid_plan_number": "⚠️ <b>Неверный номер плана.</b>",
     }
 
     def __init__(self):
@@ -42,7 +42,7 @@ class PlanManager(loader.Module):
         """Добавляет новый план"""
         args = utils.get_args_raw(message)
         if not args:
-            await utils.answer(message, "Вы должны указать план.")
+            await utils.answer(message, "⚠️ <b>Вы должны указать план.</b>")
             return
         
         self.plans.append(args)
@@ -55,7 +55,7 @@ class PlanManager(loader.Module):
             await utils.answer(message, self.strings["plans_empty"])
             return
         
-        formatted_plans = "\n".join(f"{i + 1}. {plan}" for i, plan in enumerate(self.plans))
+        formatted_plans = "\n".join(f"{i + 1}. <s>{plan}</s>" for i, plan in enumerate(self.plans))
         await utils.answer(message, self.strings["plans_list"].format(formatted_plans))
 
     @loader.command(command="plan_yes")
@@ -63,12 +63,12 @@ class PlanManager(loader.Module):
         """Вычеркивает план из списка"""
         args = utils.get_args_raw(message)
         if not args.isdigit() or int(args) < 1 or int(args) > len(self.plans):
-            await utils.answer(message, "Неверный номер плана.")
+            await utils.answer(message, self.strings["invalid_plan_number"])
             return
         
         index = int(args) - 1
-        crossed_plan = f"~~{self.plans[index]}~~"
-        self.plans[index] = crossed_plan
+        crossed_plan = self.plans[index]
+        self.plans[index] = f"<s>{crossed_plan}</s>"  # Обновляем план с зачеркиванием
         await utils.answer(message, self.strings["plan_crossed"].format(crossed_plan))
 
     @loader.command(command="delplan")
@@ -76,7 +76,7 @@ class PlanManager(loader.Module):
         """Удаляет план из списка"""
         args = utils.get_args_raw(message)
         if not args.isdigit() or int(args) < 1 or int(args) > len(self.plans):
-            await utils.answer(message, "Неверный номер плана.")
+            await utils.answer(message, self.strings["invalid_plan_number"])
             return
 
         index = int(args) - 1
