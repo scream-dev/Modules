@@ -25,21 +25,6 @@ class GigaChatMod(loader.Module):
         },
     }
 
-    strings_ru = {
-        "api_key_missing": "Пожалуйста, установите API ключ в конфигурации модуля.",
-        "query_missing": "Пожалуйста, введите запрос после команды.",
-        "response_error": "Не удалось получить ответ от GigaChat.",
-        "error_occurred": "Произошла ошибка: {}",
-        "daily_plan_created": "План на неделю создан.",
-        "weekly_summary": "Итог за неделю: {}\n",
-        "formatted_post": "{}\n=\n",
-        "command_help": {
-            ".planning": "Создает план на неделю.",
-            ".show_sc": "Показывает хранилище данных.",
-            ".gen": "Генерирует посты за день с задержкой.",
-        },
-    }
-
     def __init__(self):
         self.config = loader.ModuleConfig(
             "GIGACHAT_API_KEY",
@@ -51,7 +36,7 @@ class GigaChatMod(loader.Module):
             "USER_SCRIPT",
             "Введите скрипт человека.",
             "DATA_STORAGE",
-            {},
+            "",  # Измените на строку или используйте JSON для хранения.
             "CHANNEL_ID",
             None,
             "Введите ID канала, в котором будет вестись личный блог.",
@@ -122,5 +107,5 @@ class GigaChatMod(loader.Module):
     @loader.command(ru_doc="Получить помощь по командам")
     async def helpcmd(self, message):
         """Показывает список доступных команд"""
-        help_text = "\n".join(f"{cmd}: {desc}" for cmd, desc in self.strings("command_help").items())
+        help_text = "\n".join(f"{cmd}: {desc}" for cmd, desc in self.strings["command_help"].items())
         await utils.answer(message, help_text)
