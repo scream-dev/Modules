@@ -7,7 +7,7 @@ from .. import loader, utils
 
 @loader.tds
 class GigaChatMod(loader.Module):
-    """Module for using GigaChat Channel"""
+    """Module for using GigaChat"""
 
     strings = {
         "name": "GigaChat Channel",
@@ -34,7 +34,7 @@ class GigaChatMod(loader.Module):
         "weekly_summary": "Итог за неделю: {}\n",
         "formatted_post": "{}\n=\n",
         "command_help": {
-            ".planning": "Создаёт план на неделю.",
+            ".planning": "Создает план на неделю.",
             ".show_sc": "Показывает хранилище данных.",
             ".gen": "Генерирует посты за день с задержкой.",
         },
@@ -57,7 +57,7 @@ class GigaChatMod(loader.Module):
             "Введите ID канала, в котором будет вестись личный блог.",
         )
         self.loop = asyncio.get_event_loop()
-        
+
     async def gencmd(self, message):
         """Генерирует посты для блога"""
         await self.generate_daily_posts(message, self.config["USER_SCRIPT"])
