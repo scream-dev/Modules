@@ -1,3 +1,11 @@
+#           __..--''``---....___   _..._    __
+# /// //_.-'    .-/";  `        ``<._  ``.''_ `. / // /
+#///_.-' _..--.'_    \                    `( ) ) // //
+#/ (_..-' // (< _     ;_..__               ; `' / ///
+# / // // //  `-._,_)' // / ``--...____..-' /// / //
+# 🐈 Module writed @ScreamDev 
+# 👌 Channel @ScreamModules
+
 import datetime
 import logging
 import asyncio
