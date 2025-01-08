@@ -9,3 +9,4 @@
 # 🐈 Module writed @ScreamDev 
 # 👌 Channel @ScreamModules
 ```
+Сабнитесь: t.me/ScreamDevBlog
