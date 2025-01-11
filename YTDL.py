@@ -20,13 +20,13 @@ from .. import loader, utils
 
 @loader.tds
 class DownloaderMod(loader.Module):
-    """Downloader module"""
+    """Downloader YT module"""
 
-    strings = {"name": "Downloader"}
+    strings = {"name": "YTDL"}
 
-    async def dltiktokcmd(self, message):
-        """TikTok video downloader"""
-        chat = "@ttsavebot"
+    async def dlytcmd(self, message):
+        """YouTubeDownload"""
+        chat = "@SaveFromVkBot"
         reply = await message.get_reply_message()
         async with message.client.conversation(chat) as conv:
             text = utils.get_args_raw(message)
@@ -35,13 +35,13 @@ class DownloaderMod(loader.Module):
             await message.edit("<b>Downloading...</b>")
             try:
                 response = conv.wait_event(
-                    events.NewMessage(incoming=True, from_users=1087584961)
+                    events.NewMessage(incoming=True, from_users=6049010225)
                 )
                 response2 = conv.wait_event(
-                    events.NewMessage(incoming=True, from_users=1087584961)
+                    events.NewMessage(incoming=True, from_users=6049010225)
                 )
                 response3 = conv.wait_event(
-                    events.NewMessage(incoming=True, from_users=1087584961)
+                    events.NewMessage(incoming=True, from_users=6049010225)
                 )
                 mm = await message.client.send_message(chat, text)
                 response = await response
@@ -49,7 +49,7 @@ class DownloaderMod(loader.Module):
                 response3 = await response3
                 await mm.delete()
             except YouBlockedUserError:
-                await message.edit("<code>Разблокируй @ttsavebot</code>")
+                await message.edit("<code>Разблокируй @SaveFromVkBot</code>")
                 return
             await message.client.send_file(
                 message.to_id, response3.media, reply_to=reply
