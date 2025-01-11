@@ -8,5 +8,6 @@
 # / // // //  `-._,_)' // / ``--...____..-' /// / //
 # 🐈 Module writed @ScreamDev 
 # 👌 Channel @ScreamModules
+# 🧨 Blog: @ScreamDevBlog
 ```
 Сабнитесь: t.me/ScreamDevBlog
