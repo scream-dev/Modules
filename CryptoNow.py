@@ -1,4 +1,4 @@
-__version__ = (1, 2, 1)
+__version__ = (1, 2, 2)
 
 #           __..--''``---....___   _..._    __
 # /// //_.-'    .-/";  `        ``<._  ``.''_ `. / // /
@@ -10,13 +10,12 @@ __version__ = (1, 2, 1)
 # 🧨 Blog: @ScreamDevBlog
 
 # meta developer: @ScreamDev, yg_modules
-# meta banner: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/CryptoNow.png
+# meta pic: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/CryptoNow.png
 
 import random as r
 import requests
 import asyncio
 from telethon.tl.types import Message
-from yumlib import yummy
 
 from .. import loader, utils
 
@@ -47,11 +46,6 @@ class CryptoNow(loader.Module):
     def __init__(self):
         self.running = False
         self.update_task = None
-
-    async def client_ready(self, client, db):
-        self.db = db
-        self.client = client
-        await yummy(client)
 
         if "defaultvalute" not in self.db:
             self.db.set("defaultvalute", "val", "btc")
