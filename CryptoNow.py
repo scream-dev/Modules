@@ -6,7 +6,9 @@
 # 🐈 Module writed @ScreamDev 
 # 👌 Channel @ScreamModules
 # 🧨 Blog: @ScreamDevBlog
+
 # meta developer: @ScreamDev, yg_modules
+# meta pic: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/CryptoNow.png
 
 import random as r
 import requests
