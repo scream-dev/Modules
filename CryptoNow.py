@@ -16,8 +16,8 @@ from yumlib import yummy
 
 from .. import loader, utils
 
-class yg_crypto(loader.Module):
-    """Модуль для того чтобы узнать курс крипты/фиата"""
+class CryptoNow(loader.Module):
+    """Модуль для того чтобы узнать курс крипты/фиата и обновлять его (для каналов)"""
 
     strings = {
         "name": "yg_crypto",
