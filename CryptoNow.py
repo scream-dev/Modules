@@ -1,4 +1,4 @@
-__version__ = (1, 2, 2)
+__version__ = (1, 2, 1)
 
 #           __..--''``---....___   _..._    __
 # /// //_.-'    .-/";  `        ``<._  ``.''_ `. / // /
@@ -10,7 +10,7 @@ __version__ = (1, 2, 2)
 # 🧨 Blog: @ScreamDevBlog
 
 # meta developer: @ScreamDev, yg_modules
-# meta pic: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/CryptoNow.png
+# meta banner: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/CryptoNow.png
 
 import random as r
 import requests
@@ -46,6 +46,10 @@ class CryptoNow(loader.Module):
     def __init__(self):
         self.running = False
         self.update_task = None
+
+    async def client_ready(self, client, db):
+        self.db = db
+        self.client = client
 
         if "defaultvalute" not in self.db:
             self.db.set("defaultvalute", "val", "btc")
