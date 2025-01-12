@@ -10,7 +10,7 @@ __version__ = (1, 2, 1)
 # 🧨 Blog: @ScreamDevBlog
 
 # meta developer: @ScreamDev, yg_modules
-# meta pic: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/CryptoNow.png
+# meta banner: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/CryptoNow.png
 
 import random as r
 import requests
