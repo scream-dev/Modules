@@ -1,4 +1,4 @@
-__version__ = (1, 2, 1)
+__version__ = (1, 2, 3)
 
 #           __..--''``---....___   _..._    __
 # /// //_.-'    .-/";  `        ``<._  ``.''_ `. / // /
@@ -47,10 +47,7 @@ class CryptoNow(loader.Module):
         self.running = False
         self.update_task = None
 
-    async def client_ready(self, client, db):
-        self.db = db
-        self.client = client
-
+    async def client_ready(self):
         if "defaultvalute" not in self.db:
             self.db.set("defaultvalute", "val", "btc")
 
