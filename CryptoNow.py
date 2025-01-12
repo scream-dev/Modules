@@ -6,6 +6,6 @@
 # 🐈 Module writed @ScreamDev 
 # 👌 Channel @ScreamModules
 # 🧨 Blog: @ScreamDevBlog
-# meta developer: @ScreamDev, @yg_modules
+# meta developer: @ScreamDev, yg_modules
 
 # in dev
