@@ -52,14 +52,14 @@ class CryptoNow(loader.Module):
         if "defaultvalute" not in self.db:
             self.db.set("defaultvalute", "val", "btc")
 
-    async def монетаcmd(self, message: Message):
+    async def coincncmd(self, message: Message):
         """<название> выбрать крипту по умолчанию"""
 
         args = utils.get_args_raw(message)
         self.db.set("defaultvalute", "val", args)
         await utils.answer(message, self.strings["okey"].format(args))
 
-    async def курсcmd(self, message: Message):
+    async def cnowcmd(self, message: Message):
         """<кол-во> <название монеты> смотреть курс"""
         args = utils.get_args_raw(message)
         tray = self.db.get("defaultvalute", "val", args)
@@ -98,10 +98,10 @@ class CryptoNow(loader.Module):
             ).json()
             smiles = r.choice(
                 [
-                    "<emoji document_id=5348140027698227662>🙀</emoji>",
-                    "<emoji document_id=5348175255019988816>🙀</emoji>",
-                    "<emoji document_id=5348179601526892213>🙀</emoji>",
-                    "<emoji document_id=5348312457750260828>🙀</emoji>"
+                    "<emoji document_id=5316561083085895267>🙀</emoji>",
+                    "<emoji document_id=5316802593391916971>🙀</emoji>",
+                    "<emoji document_id=5316979275461573049>🙀</emoji>",
+                    "<emoji document_id=5316770651720137011>🙀</emoji>"
                 ]
             )
 
