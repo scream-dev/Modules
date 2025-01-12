@@ -5,6 +5,8 @@
 # / // // //  `-._,_)' // / ``--...____..-' /// / //
 # 🐈 Module writed @ScreamDev 
 # 👌 Channel @ScreamModules
+# 🧨 Blog: @ScreamDevBlog
+# meta developer: @ScreamDev
 
 import datetime
 import logging
