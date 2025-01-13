@@ -1,4 +1,4 @@
-__version__ = (1, 2, 3)
+__version__ = (1, 3, 0)
 
 #           __..--''``---....___   _..._    __
 # /// //_.-'    .-/";  `        ``<._  ``.''_ `. / // /
@@ -61,6 +61,7 @@ class CryptoNow(loader.Module):
     async def cnowcmd(self, message: Message):
         """<кол-во> <название монеты> смотреть курс"""
         args = utils.get_args_raw(message)
+        args = args.lower()  # Перевод строки в нижний регистр перед использованием
         tray = self.db.get("defaultvalute", "val", args)
         if tray == "":
             tray = "btc"
@@ -74,15 +75,15 @@ class CryptoNow(loader.Module):
             args_list = ["1", args_list[0]]
         coin = args_list[1].upper()
 
-        if coin == "ТОН":
+        if coin == "тон":
             coin = "TON"
-        if coin == "ЮСД":
+        if coin == "юсд":
             coin = "USD"
-        if coin == "РУБ":
+        if coin == "руб":
             coin = "RUB"
-        if coin == "ГРН":
+        if coin == "грн":
             coin = "UAH"
-        if coin == "ЗЛ":
+        if coin == "зл":
             coin = "PLN"
 
         self.running = True
