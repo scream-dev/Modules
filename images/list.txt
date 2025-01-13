@@ -1,0 +1,3 @@
+# PotuznoBold - https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/BoldPotuzno.py
+# Plan - https://github.com/scream-dev/Modules/raw/refs/heads/main/Plan.py
+# CryptoNow - https://github.com/scream-dev/Modules/raw/refs/heads/main/CryptoNow.py
