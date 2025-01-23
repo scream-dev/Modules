@@ -9,6 +9,9 @@
 # 🐈 Module writed @ScreamDev 
 # 👌 Channel @ScreamModules
 # 🧨 Blog: @ScreamDevBlog
+
 # meta developer: @ScreamDev
+# meta banner: 
+# meta pic: 
 ```
-Сабнитесь: t.me/ScreamDevBlog
+Сабнитесь: https://t.me/ScreamDevBlog
