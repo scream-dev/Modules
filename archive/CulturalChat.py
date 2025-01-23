@@ -8,7 +8,7 @@
 # 🧨 Blog: @ScreamDevBlog
 
 # Module is modificarion BanWord by AuroraModules
-# Original: github.com/KorenbZla/HikkaModules/blob/main/BanWord.py
+# Original: raw.githubusercontent.com/KorenbZla/HikkaModules/refs/heads/main/BanWord.py
 # * 🔒 Code is licensed under GNU AGPLv3
 # * 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 # * ⛔️ You CANNOT edit this file without direct permission from the author.
