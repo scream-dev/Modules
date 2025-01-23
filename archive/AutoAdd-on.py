@@ -21,23 +21,18 @@ class AutoEdit(loader.Module):
     """Добавляет к сообщению канала ватемарку"""
 
     strings = {
-        "name": "AutoEdit",
-        "timechoice": "Время, за которое будет редактироваться сообщение.(в секундах)",
-        "editmsg": "Текст, на который будет редактироваться ваше сообщение.",
+        "name": "AutoAdd-On",
     }
 
     @loader.watcher(out=True)
     async def watcher(self, message):
         if self.get("autoedit"):
-            if message.text == "<b><i>AutoEdit on.</i></b>":
-                return
-            if message.text == "@DorotoroMods":
-                return
-            if message.text == "@AstroModules":
+            if message.chat_id != self.config["channel_id"]:
                 return
 
-            await asyncio.sleep(self.config["timechoice"])
-            await message.edit(self.config["editmsg"])
+            watermark_text = self.config["watermark"]
+            edit_msg = f"{message.text}\n\n{watermark_text}"
+            await message.edit(edit_msg)
 
     async def client_ready(self, client, db):
         self._db = db
@@ -46,22 +41,24 @@ class AutoEdit(loader.Module):
     def __init__(self):
         self.config = loader.ModuleConfig(
             loader.ConfigValue(
-                "timechoice", "10", doc=lambda: self.strings("timechoice")
+                "watermark",
+                "<b>========\nЗамените текст в конфиге .cfg AutoAdd-On</b>",
+                doc="Текст ватемарки, добавляемой к сообщениям."
             ),
             loader.ConfigValue(
-                "editmsg",
-                "<b>========\nЗасекречено</b>",
-                doc=lambda: self.strings("editmsg"),
-            ),
+                "channel_id",
+                0,  # Замените 0 на идентификатор канала по умолчанию
+                doc="ID канала, где будет работать модуль."
+            )
         )
 
     @loader.command()
     async def autoedit(self, message):
-        "- включить/выключить AutoEdit."
+        "- включить/выключить AutoAdd-On."
         if self.get("autoedit") == True:
             self.set("autoedit", False)
-            await utils.answer(message, "<b><i>AutoEdit off.</i></b>")
+            await utils.answer(message, "<b>😶‍🌫️Авто Дополнение включено</b>")
             return
         elif self.get("autoedit") == False or self.get("autoedit") is None:
             self.set("autoedit", True)
-            await utils.answer(message, "<b><i>AutoEdit on.</i></b>")
+            await utils.answer(message, "<b>🎈Авто Дополнение выключено</b>")
