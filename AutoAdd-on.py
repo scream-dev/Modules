@@ -57,8 +57,8 @@ class AutoEdit(loader.Module):
         "- включить/выключить AutoAdd-On."
         if self.get("autoedit") == True:
             self.set("autoedit", False)
-            await utils.answer(message, "<b>😶‍🌫️Авто Дополнение включено</b>")
+            await utils.answer(message, "<b>🎈Авто Дополнение выключено</b>")
             return
         elif self.get("autoedit") == False or self.get("autoedit") is None:
             self.set("autoedit", True)
-            await utils.answer(message, "<b>🎈Авто Дополнение выключено</b>")
+            await utils.answer(message, "<b>😶‍🌫️Авто Дополнение включено</b>")
