@@ -8,8 +8,8 @@
 # 🧨 Blog: @ScreamDevBlog
 
 # meta developer: @ScreamDev
-# meta banner: 
-# meta pic: 
+# meta banner: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/AutoAddon.png
+# meta pic: https://raw.githubusercontent.com/scream-dev/Modules/refs/heads/main/images/AutoAddon.png
 
 import asyncio
 
@@ -18,7 +18,7 @@ from .. import loader, utils
 
 @loader.tds
 class AutoEdit(loader.Module):
-    """Редактирует каждое ваше сообщение в определенное время на выбранный вами текст.\n Настройка через .config AutoEdit"""
+    """Добавляет к сообщению канала ватемарку"""
 
     strings = {
         "name": "AutoEdit",
